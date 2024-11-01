@@ -1,4 +1,5 @@
 # Zingo Android and iOS apps
+
 App Store: [https://apps.apple.com/app/zingo/id1668209531](https://apps.apple.com/app/zingo/id1668209531)  
 Google Play: [https://play.google.com/store/apps/details?id=org.ZingoLabs.Zingo](https://play.google.com/store/apps/details?id=org.ZingoLabs.Zingo)
 
@@ -9,7 +10,9 @@ If you believe you have discovered a security issue, please contact us at:
 zingodisclosure@proton.me
 
 # iOS
+
 ## Prerequisites
+
 1. Yarn
 2. NodeJS (recommended version 17+)
 3. Rust (https://www.rust-lang.org/tools/install)
@@ -18,6 +21,7 @@ zingodisclosure@proton.me
 6. Cocaopods (`sudo gem install cocoapods`)
 
 ## Building for physical device
+
 1. Clone the repository.
 2. Go to the cloned repo `cd zingo-mobile`.
 3. In the `rust/ios` directory, run: <br />
@@ -29,6 +33,7 @@ zingodisclosure@proton.me
    `pod install`
 
 ## Building for simulator
+
 1. Clone the repository.
 2. Go to the cloned repo `cd zingo-mobile`.
 3. In the `rust/ios` directory, run: <br />
@@ -40,6 +45,7 @@ zingodisclosure@proton.me
    `pod install`
 
 ## Launching the app
+
 1. In a terminal, run: <br />
    `yarn start`
 2. In a separate terminal, run: <br />
@@ -47,21 +53,23 @@ zingodisclosure@proton.me
    You can also open the `ios` directory in XCode and run it there.
 
 # Android
+
 ## Prerequisites
+
 1. Yarn
 2. NodeJS (recommended version 17+)
 3. Rust (https://www.rust-lang.org/tools/install)
 4. Docker (Docker Engine)
 5. OpenJDK 18 (https://jdk.java.net/archive/)
 
-    1. curl https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz -o openjdk-18.0.2_linux-x64_bin.tar.gz
-    2. tar -xzvf openjdk-18.0.2_linux-x64_bin.tar.gz
+   1. curl https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz -o openjdk-18.0.2_linux-x64_bin.tar.gz
+   2. tar -xzvf openjdk-18.0.2_linux-x64_bin.tar.gz
 
 6. Android SDK Command-line Tools <br />
    Install via Android Studio SDK Manager: <br />
    https://developer.android.com/studio/install <br />
    or as standalone: <br />
-   https://developer.android.com/tools  
+   https://developer.android.com/tools
 7. Cargo nextest (https://nexte.st/book/installing-from-source.html)
 
 The React Native tools require some environment variables to be set up in order to build apps with
@@ -76,6 +84,7 @@ Also, make sure your JAVA_HOME is set, for example: <br />
 `export JAVA_HOME="/usr/lib/jvm/jdk-18.0.2"`
 
 ## Building
+
 1. Clone the repository.
 2. Go to the cloned repo `cd zingo-mobile`.
 3. In the `rust` directory, run: <br />
@@ -85,22 +94,26 @@ Also, make sure your JAVA_HOME is set, for example: <br />
    `yarn`
 
 ## Launching the app
+
 ### Android Studio
-1. For Android emulations, you can create a new AVD, compatible with your CPU architecture 
-   i.e. x86_64 (https://developer.android.com/studio/run/managing-avds). The recommended API is API 
+
+1. For Android emulations, you can create a new AVD, compatible with your CPU architecture
+   i.e. x86_64 (https://developer.android.com/studio/run/managing-avds). The recommended API is API
    30 (Android 11). Alternatively, you can connect to a physical device
    (https://reactnative.dev/docs/running-on-device).
 2. In `File > Settings`, navigate to `Build, Execution and Deployment > Build Tools > Gradle` and
    check the `Gradle JDK` matches your JDK version.
-2. In a terminal, run: <br />
+3. In a terminal, run: <br />
    `yarn start`
-3. Open the `android` directory in Android Studio as a project, select 'app' and the previously
+4. Open the `android` directory in Android Studio as a project, select 'app' and the previously
    created AVD in the upper toolbar and click the "Run 'app'" button.
    Alternatively, launch an AVD and in a separate terminal, run: <br />
-   `yarn android` 
-   
+   `yarn android`
+
 ### Android SDK Command-line Tools (Standalone)
+
 You can also emulate android from the command line without using Android Studio.
+
 1. Check that the Android SDK cmdline-tools binaries are in the following directory path: <br />
    `$ANDROID_HOME/cmdline-tools/latest/bin`
 2. From the root directory run: <br />
@@ -108,7 +121,9 @@ You can also emulate android from the command line without using Android Studio.
    Outputs are generated in `android/app/build/outputs/emulator_output`
 
 ## Testing
+
 ### Prerequesites
+
 Integration tests and end-to-end tests require a regtest server. On linux hosts, these may be run
 locally by installing the lightwalletd, zcashd and zcash-cli binaries
 (https://github.com/zingolabs/zingolib#regtest). From the `rust/android/regtest/bin/` directory run: <br />
@@ -117,15 +132,17 @@ From the `rust/android/lightwalletd_bin` directory run: <br />
 `ln -s path/to/lightwalletd/binary ./`
 
 Alternatively, integration tests and end-to-end tests can be run on non-linux hosts with Regchest
-(https://github.com/zingolabs/zingo-regchest). Regchest manages the zcash/lightwalletd regtest 
+(https://github.com/zingolabs/zingo-regchest). Regchest manages the zcash/lightwalletd regtest
 network in a docker container. Before running tests, pull the latest Regchest image from docker: <br />
-`docker pull zingodevops/regchest:008`
+`docker pull zingodevops/regchest:009`
 
 ### Yarn Tests
+
 1. From the root directory, run: <br />
    `yarn test`
 
 ### Integration Tests
+
 1. Create quick-boot snapshots to speed up AVD launch times. From the root directory, run: <br />
    `./scripts/integration_tests.sh -a x86_64 -s` <br />
    `./scripts/integration_tests.sh -a x86 -s` <br />
@@ -153,6 +170,7 @@ Without the cargo test runner these emulated android devices will not be able to
 lightwalletd/zcashd regtest network. Therefore, only tests in the "Offline Testsuite" may be tested.
 
 ### End-to-End Tests
+
 0. Note there needs to be a lightwalletd in rust/android/lightwalletd_bin
 1. Launch the emulated AVD by clicking the 'play' icon in Android Studio's `Device Manager`.
    Alternatively, connect to a physical device. See previous section 'Launching the app' for more
@@ -179,4 +197,5 @@ Regchest is still under development and currently not able to run darkside end-t
 `cargo nextest run e2e --features regchest -E 'not test(darkside)'`
 
 # Troubleshooting
+
 For notes on known issues and problems, see the [trouble-shooting notes](./TROUBLESHOOTING.md).
